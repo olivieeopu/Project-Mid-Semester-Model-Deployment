@@ -70,7 +70,11 @@ st.divider()
 if st.button("💰 Predict Salary", use_container_width=True):
     try:
         pred = model.predict(input_df)[0]
-        st.success(f"💸 Estimated Salary: {pred:.2f} LPA")
+
+            if pred < 2:
+                st.warning("Salary is very low")
+            else:
+                st.success(f"💸 Estimated Salary: {pred:.2f} LPA")
 
     except Exception as e:
         st.error(f"Error: {e}")
